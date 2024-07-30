@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="32700.99.1234" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="22685"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--View Controller-->
+        <scene sceneID="tne-QT-ifu">
+            <objects>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
+                <viewController id="BYZ-38-t0r" customClass="ViewController" customModule="Budget" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="fJw-rd-ljq">
+                                <rect key="frame" x="0.0" y="35" width="414" height="287"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                            </tableView>
+                            <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="WOF-aj-wzj">
+                                <rect key="frame" x="40" y="419" width="334" height="34"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="sO8-71-jUh">
+                                <rect key="frame" x="60" y="605" width="294" height="35"/>
+                                <state key="normal" title="Button"/>
+                                <buttonConfiguration key="configuration" style="plain" title="Button"/>
+                                <connections>
+                                    <action selector="addExpensePressed:" destination="BYZ-38-t0r" eventType="touchUpInside" id="Utt-Au-2UT"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="sO8-71-jUh" secondAttribute="trailing" constant="60" id="1Ue-7a-tiF"/>
+                            <constraint firstItem="fJw-rd-ljq" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="1xZ-1g-7oZ"/>
+                            <constraint firstItem="sO8-71-jUh" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="60" id="9Fm-5v-hEn"/>
+                            <constraint firstItem="WOF-aj-wzj" firstAttribute="top" secondItem="fJw-rd-ljq" secondAttribute="bottom" constant="97" id="Clu-wf-4fw"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="WOF-aj-wzj" secondAttribute="trailing" constant="40" id="Jqy-XD-7fl"/>
+                            <constraint firstItem="fJw-rd-ljq" firstAttribute="trailing" secondItem="6Tk-OE-BBY" secondAttribute="trailing" id="TZa-3g-Ypb"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="fJw-rd-ljq" secondAttribute="bottom" constant="540" id="X88-8M-8yW"/>
+                            <constraint firstItem="fJw-rd-ljq" firstAttribute="top" secondItem="8bC-Xf-vdC" secondAttribute="top" constant="35" id="Z8o-Zb-xkm"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="sO8-71-jUh" secondAttribute="bottom" constant="222" id="gQ2-Jm-0tn"/>
+                            <constraint firstItem="sO8-71-jUh" firstAttribute="top" secondItem="WOF-aj-wzj" secondAttribute="bottom" constant="152" id="lXL-0C-c27"/>
+                            <constraint firstItem="WOF-aj-wzj" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="40" id="wup-Lf-I53"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="addExpenseButton" destination="sO8-71-jUh" id="4mk-xd-VwY"/>
+                        <outlet property="expenseTextField" destination="WOF-aj-wzj" id="1Vo-Ex-HzO"/>
+                        <outlet property="tableView" destination="fJw-rd-ljq" id="YPy-LM-ugr"/>
+                    </connections>
+                </viewController>
+            </objects>
+            <point key="canvasLocation" x="131.8840579710145" y="-27.455357142857142"/>
+        </scene>
+    </scenes>
+    <resources>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+    </resources>
+</document>
