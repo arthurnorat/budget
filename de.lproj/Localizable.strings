@@ -5,3 +5,10 @@
   Created by Arthur Coelho on 03/04/25.
   
 */
+
+"expense_name" = "Name";
+"expense_amount" = "Betrag";
+"expense_type" = "Typ";
+"fixed" = "Fest";
+"variable" = "Variabel";
+"add_expense" = "Ausgabe hinzufügen";

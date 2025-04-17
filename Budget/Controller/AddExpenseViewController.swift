@@ -4,44 +4,64 @@
 //
 //  Created by Arthur Norat on 15/04/25.
 //
+
 import UIKit
 
+protocol AddExpenseDelegate: AnyObject {
+	func didAddNewExpense(_ expense: Expense)
+}
+
 final class AddExpenseViewController: UIViewController {
+	
+	// MARK: - Properties
+	
+	private let addExpenseView = AddExpenseView()
+	weak var delegate: AddExpenseDelegate?
+	private let dataSource = ExpensesDataSource()	
+	
+	// MARK: - Lifecycle
+	
+	override func loadView() {
+		self.view = addExpenseView
+	}
+	
+	override func viewDidLoad() {
+		super.viewDidLoad()
+		addExpenseView.delegate = self
+	}
     
-    // MARK: - UI Components
-    private lazy var closeButton: UIButton = {
-        let button = UIButton(type: .system)
-        button.setTitle("Fechar", for: .normal)
-        button.titleLabel?.font = .boldSystemFont(ofSize: 18)
-        button.backgroundColor = .systemBlue
-        button.setTitleColor(.white, for: .normal)
-        button.layer.cornerRadius = 10
-        button.addTarget(self, action: #selector(dismissSelf), for: .touchUpInside)
-        button.translatesAutoresizingMaskIntoConstraints = false
-        return button
-    }()
-    
-    // MARK: - Lifecycle
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        setupUI()
-    }
-    
-    // MARK: - Setup
-    private func setupUI() {
-        view.backgroundColor = .systemBackground
-        
-        view.addSubview(closeButton)
-        NSLayoutConstraint.activate([
-            closeButton.centerXAnchor.constraint(equalTo: view.centerXAnchor),
-            closeButton.centerYAnchor.constraint(equalTo: view.centerYAnchor),
-            closeButton.widthAnchor.constraint(equalToConstant: 120),
-            closeButton.heightAnchor.constraint(equalToConstant: 44)
-        ])
-    }
     
     // MARK: - Actions
+	
     @objc private func dismissSelf() {
         dismiss(animated: true)
     }
+}
+
+// MARK: - AddExpenseViewProtocol
+
+extension AddExpenseViewController: AddExpenseViewProtocol {
+	func tappedAddButton() {
+		guard let name = addExpenseView.nameTextField.text, !name.isEmpty,
+			  let amountText = addExpenseView.amountTextField.text,
+			  let amount = Float(amountText) else {
+			// Mostrar alerta de erro
+			return
+		}
+		
+		let selectedType: Expense.ExpenseType = addExpenseView.typeSegmentedControl.selectedSegmentIndex == 0 ? .fixed : .variable
+		
+		let expense = Expense(name: name, amount: amount, type: selectedType)
+		delegate?.didAddNewExpense(expense)
+		
+		// Limpa os campos
+		addExpenseView.nameTextField.text = ""
+		addExpenseView.amountTextField.text = ""
+		addExpenseView.typeSegmentedControl.selectedSegmentIndex = 0
+		
+		// Navega para a SummaryView - a decidir
+		if let tabBarController = self.tabBarController {
+			tabBarController.selectedIndex = 1
+		}
+	}
 }

@@ -1,5 +1,5 @@
 //
-//  MainViewController.swift
+//  SummaryViewController.swift
 //  Budget
 //
 //  Created by Arthur Coelho on 07/04/25.
@@ -11,7 +11,7 @@ final class SummaryViewController: UIViewController {
 	
 	// MARK: - Properties
 
-	private let mainView = MainView()
+	private let mainView = SummaryView()
 	private let dataSource = ExpensesDataSource() // Substitui o array direto
 	private var expenses: [Expense] = [] {
 		didSet {
@@ -29,7 +29,7 @@ final class SummaryViewController: UIViewController {
 		super.viewDidLoad()
 		configTableView()
 		mainView.tableView.tableHeaderView = createTableHeaderView()
-		view.backgroundColor = .systemRed
+		title = "Resumo"		
 	}
 	
 	func configTableView() {
@@ -92,4 +92,12 @@ extension SummaryViewController: UITableViewDelegate {
 			tableView.deselectRow(at: indexPath, animated: true)
 			// Lógica de seleção aqui
 		}	
+}
+
+extension SummaryViewController: AddExpenseDelegate {
+	func didAddNewExpense(_ expense: Expense) {
+		print("New expense added: \(expense.name), amount: \(expense.amount)")
+		dataSource.addExpense(expense)
+		mainView.tableView.reloadData()
+	}
 }

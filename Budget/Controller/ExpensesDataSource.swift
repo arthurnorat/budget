@@ -1,3 +1,12 @@
+//
+//  ExpensesDataSource.swift
+//  Budget
+//
+//  Created by Arthur Coelho on 09/04/25.
+//
+
+import UIKit
+
 final class ExpensesDataSource: NSObject, UITableViewDataSource {
     
     // MARK: - Properties
@@ -11,10 +20,16 @@ final class ExpensesDataSource: NSObject, UITableViewDataSource {
     func addExpense(_ expense: Expense) {
         expenses.append(expense)
     }
+	
+	func getAllExpenses() -> [Expense] {
+			return expenses
+	}
     
     func getExpense(at indexPath: IndexPath) -> Expense {
         return expenses[indexPath.row]
     }
+	
+	
     
     // MARK: - UITableViewDataSource
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {

@@ -5,6 +5,7 @@
 //  Created by Arthur Norat on 15/04/25.
 //
 
+import UIKit
 
 final class AppTabBarController: UITabBarController {
     override func viewDidLoad() {
@@ -15,21 +16,26 @@ final class AppTabBarController: UITabBarController {
     
     private func setupTabs() {
         // 1. Instanciar as ViewControllers
-        let mainVC = UINavigationController(rootViewController: MainViewController())
+		let addExpenseVC = UINavigationController(rootViewController: AddExpenseViewController())
         let summaryVC = UINavigationController(rootViewController: SummaryViewController())
         let settingsVC = UINavigationController(rootViewController: SettingsViewController())
+		
+		if let addExpenseController = addExpenseVC.viewControllers.first as? AddExpenseViewController,
+		   let summaryController = summaryVC.viewControllers.first as? SummaryViewController {
+			addExpenseController.delegate = summaryController
+		}
         
         // 2. Definir ícones e títulos
-        mainVC.tabBarItem = UITabBarItem(
+		addExpenseVC.tabBarItem = UITabBarItem(
+			title: "Adicionar",
+			image: UIImage(systemName: "plus"),
+			selectedImage: UIImage(systemName: "plus.circle.fill")
+		)
+		
+		summaryVC.tabBarItem = UITabBarItem(
             title: "Gastos",
             image: UIImage(systemName: "list.bullet"),
             selectedImage: UIImage(systemName: "list.bullet.fill")
-        )
-        
-        summaryVC.tabBarItem = UITabBarItem(
-            title: "Resumo",
-            image: UIImage(systemName: "chart.pie"),
-            selectedImage: UIImage(systemName: "chart.pie.fill")
         )
         
         settingsVC.tabBarItem = UITabBarItem(
@@ -39,7 +45,7 @@ final class AppTabBarController: UITabBarController {
         )
         
         // 3. Adicionar às tabs
-        setViewControllers([mainVC, summaryVC, settingsVC], animated: true)
+        setViewControllers([addExpenseVC, summaryVC, settingsVC], animated: true)
     }
     
     private func customizeAppearance() {
