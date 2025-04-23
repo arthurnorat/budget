@@ -12,8 +12,7 @@
 		C92B9E382C583DA700AD4557 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C92B9E372C583DA700AD4557 /* SceneDelegate.swift */; };
 		C92B9E3F2C583DA900AD4557 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C92B9E3E2C583DA900AD4557 /* Assets.xcassets */; };
 		C92B9E422C583DA900AD4557 /* Base in Resources */ = {isa = PBXBuildFile; fileRef = C92B9E412C583DA900AD4557 /* Base */; };
-		C92B9E4D2C5918DE00AD4557 /* CustomTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = C92B9E4C2C5918DE00AD4557 /* CustomTableViewCell.xib */; };
-		C92B9E4E2C5918DE00AD4557 /* CustomTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C92B9E4B2C5918DE00AD4557 /* CustomTableViewCell.swift */; };
+		C92B9E4E2C5918DE00AD4557 /* ExpenseTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C92B9E4B2C5918DE00AD4557 /* ExpenseTableViewCell.swift */; };
 		C92B9E512C593C8700AD4557 /* Expense.swift in Sources */ = {isa = PBXBuildFile; fileRef = C92B9E502C593C8700AD4557 /* Expense.swift */; };
 		C9A2D25B2DA7094300E86524 /* ExpensesDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9A2D25A2DA7094300E86524 /* ExpensesDataSource.swift */; };
 		C9DC79AD2DA451D1003F5AAA /* SummaryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9DC79AC2DA451BC003F5AAA /* SummaryViewController.swift */; };
@@ -33,8 +32,7 @@
 		C92B9E3E2C583DA900AD4557 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		C92B9E412C583DA900AD4557 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		C92B9E432C583DA900AD4557 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		C92B9E4B2C5918DE00AD4557 /* CustomTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTableViewCell.swift; sourceTree = "<group>"; };
-		C92B9E4C2C5918DE00AD4557 /* CustomTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CustomTableViewCell.xib; sourceTree = "<group>"; };
+		C92B9E4B2C5918DE00AD4557 /* ExpenseTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExpenseTableViewCell.swift; sourceTree = "<group>"; };
 		C92B9E4F2C59361B00AD4557 /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		C92B9E502C593C8700AD4557 /* Expense.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Expense.swift; sourceTree = "<group>"; };
 		C9A2D25A2DA7094300E86524 /* ExpensesDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExpensesDataSource.swift; sourceTree = "<group>"; };
@@ -101,8 +99,6 @@
 				C92B9E3E2C583DA900AD4557 /* Assets.xcassets */,
 				C92B9E402C583DA900AD4557 /* LaunchScreen.storyboard */,
 				C92B9E432C583DA900AD4557 /* Info.plist */,
-				C92B9E4B2C5918DE00AD4557 /* CustomTableViewCell.swift */,
-				C92B9E4C2C5918DE00AD4557 /* CustomTableViewCell.xib */,
 			);
 			path = Budget;
 			sourceTree = "<group>";
@@ -130,9 +126,10 @@
 		C9F465922DA04D27005C87E1 /* View */ = {
 			isa = PBXGroup;
 			children = (
-				C9F465952DA04D91005C87E1 /* CustomTableViewCellProgrammatic.swift */,
-				C9F465932DA04D2D005C87E1 /* SummaryView.swift */,
 				E0A152AE2DB014DA00D6285B /* AddExpenseView.swift */,
+				C9F465952DA04D91005C87E1 /* CustomTableViewCellProgrammatic.swift */,
+				C92B9E4B2C5918DE00AD4557 /* ExpenseTableViewCell.swift */,
+				C9F465932DA04D2D005C87E1 /* SummaryView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -199,7 +196,6 @@
 			files = (
 				C92B9E3F2C583DA900AD4557 /* Assets.xcassets in Resources */,
 				C92B9E422C583DA900AD4557 /* Base in Resources */,
-				C92B9E4D2C5918DE00AD4557 /* CustomTableViewCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -217,7 +213,7 @@
 				C92B9E362C583DA700AD4557 /* AppDelegate.swift in Sources */,
 				C9F465962DA04D91005C87E1 /* CustomTableViewCellProgrammatic.swift in Sources */,
 				E03BE29C2DAEF4C100D1A407 /* AddExpenseViewController.swift in Sources */,
-				C92B9E4E2C5918DE00AD4557 /* CustomTableViewCell.swift in Sources */,
+				C92B9E4E2C5918DE00AD4557 /* ExpenseTableViewCell.swift in Sources */,
 				C9DC79AD2DA451D1003F5AAA /* SummaryViewController.swift in Sources */,
 				C92B9E382C583DA700AD4557 /* SceneDelegate.swift in Sources */,
 				E03BE29A2DAEEE8E00D1A407 /* AppTabBarController.swift in Sources */,

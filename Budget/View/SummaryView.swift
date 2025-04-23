@@ -21,6 +21,7 @@ final class SummaryView: UIView {
 	
 	lazy var budgetTrackerLabel: UILabel = {
 		let label = UILabel()
+		label.backgroundColor = .systemBackground
 		label.text = "Budget Tracker"
 		label.font = .boldSystemFont(ofSize: 30)
 		label.translatesAutoresizingMaskIntoConstraints = false
@@ -29,24 +30,24 @@ final class SummaryView: UIView {
 	
 	lazy var remainingBudgetView: UIView = {
 		let view = UIView()
-		view.backgroundColor = .systemTeal
+		view.backgroundColor = .systemBackground
 		
 		// Left labels
 		let titleLabel = UILabel()
 		titleLabel.text = "Remaining Budget"
 		titleLabel.font = .boldSystemFont(ofSize: 16)
-		titleLabel.textColor = .white.withAlphaComponent(0.9)
+//		titleLabel.textColor = .white.withAlphaComponent(0.9)
 		
 		let amountLabel = UILabel()
 		amountLabel.text = "R$ 1.500,00"
 		amountLabel.font = .systemFont(ofSize: 12)
-		amountLabel.textColor = .white
+//		amountLabel.textColor = .white
 		
 		// Right label
 		let totalAmountLabel = UILabel()
 		totalAmountLabel.text = "R$ 3.000,00"
 		totalAmountLabel.font = .systemFont(ofSize: 14)
-		totalAmountLabel.textColor = .white
+//		totalAmountLabel.textColor = .white
 		totalAmountLabel.textAlignment = .right
 		
 		// Stacks
@@ -77,15 +78,15 @@ final class SummaryView: UIView {
 	
 	lazy var budgetUsageView: UIView = {
 		let view = UIView()
-		view.backgroundColor = .systemIndigo
-		
+		view.backgroundColor = .systemBackground
+	
 		let titleLabel = UILabel()
 		titleLabel.text = "Budget Usage"
 		titleLabel.font = .boldSystemFont(ofSize: 16)
-		titleLabel.textColor = .white
+//		titleLabel.textColor = .white
 		
 		let progressBar = UIProgressView(progressViewStyle: .default)
-		progressBar.progressTintColor = .systemGreen
+		progressBar.progressTintColor = .systemTeal
 		progressBar.trackTintColor = .lightGray.withAlphaComponent(0.6)
 		progressBar.progress = 0.5 // Exemplo de progresso
 		progressBar.heightAnchor.constraint(equalToConstant: 6).isActive = true
@@ -116,8 +117,9 @@ final class SummaryView: UIView {
 	
 	lazy var spendingHistoryLabel: UILabel = {
 		let label = UILabel()
+		label.backgroundColor = .systemBackground
 		label.text = "Spending history"
-		label.font = .boldSystemFont(ofSize: 28)
+		label.font = .boldSystemFont(ofSize: 24)
 		label.translatesAutoresizingMaskIntoConstraints = false
 		return label
 	}()
@@ -125,7 +127,8 @@ final class SummaryView: UIView {
 	lazy var tableView: UITableView = {
 		let tableView = UITableView()
 		tableView.translatesAutoresizingMaskIntoConstraints = false
-		tableView.register(UITableViewCell.self, forCellReuseIdentifier: "cell")
+		tableView.register(ExpenseTableViewCell.self, forCellReuseIdentifier: "ExpenseCell")
+		tableView.separatorStyle = .none
 		return tableView
 	}()	
 
@@ -172,5 +175,27 @@ final class SummaryView: UIView {
 			// Constraints para a tableView (opcional, já que está na stack view)
 			tableView.heightAnchor.constraint(greaterThanOrEqualToConstant: 200) // Altura mínima
 		])
+	}	
+	
+	func updateBudgetValues(remaining: Double, total: Double) {
+		guard let mainStack = remainingBudgetView.subviews.first as? UIStackView,
+			  let leftStack = mainStack.arrangedSubviews.first as? UIStackView,
+			  let amountLabel = leftStack.arrangedSubviews.last as? UILabel,
+			  let totalLabel = mainStack.arrangedSubviews.last as? UILabel else { return }
+		
+		let formatter = NumberFormatter()
+		formatter.numberStyle = .currency
+		formatter.locale = Locale.current
+		
+		amountLabel.text = formatter.string(from: NSNumber(value: remaining))
+		totalLabel.text = formatter.string(from: NSNumber(value: total))
+	}	
+	
+	func updateProgressBar(usedPercentage: Double) {
+		guard let mainStack = budgetUsageView.subviews.first as? UIStackView,
+			  let progressBar = mainStack.arrangedSubviews.last as? UIProgressView else { return }
+		
+		progressBar.progress = Float(usedPercentage)
+		progressBar.progressTintColor = usedPercentage > 0.8 ? .systemRed : .systemTeal // Alerta visual se >80%
 	}
 }

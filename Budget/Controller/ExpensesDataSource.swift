@@ -25,11 +25,18 @@ final class ExpensesDataSource: NSObject, UITableViewDataSource {
 			return expenses
 	}
     
-    func getExpense(at indexPath: IndexPath) -> Expense {
-        return expenses[indexPath.row]
-    }
+	func getExpense(at index: Int) -> Expense? {
+		guard index < expenses.count else { return nil }
+		return expenses[index]
+	}
 	
+	func getTotalSpent() -> Float {
+		return expenses.reduce(0) { $0 + $1.amount }
+	}
 	
+	func numberOfExpenses() -> Int {
+		return expenses.count
+	}	
     
     // MARK: - UITableViewDataSource
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -38,10 +45,10 @@ final class ExpensesDataSource: NSObject, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell = tableView.dequeueReusableCell(
-            withIdentifier: CustomTableViewCell.identifier,
+            withIdentifier: ExpenseTableViewCell.identifier,
             for: indexPath
-        ) as? CustomTableViewCell else {
-            fatalError("Failed to dequeue CustomTableViewCell")
+        ) as? ExpenseTableViewCell else {
+            return UITableViewCell()
         }
         
         let expense = expenses[indexPath.row]

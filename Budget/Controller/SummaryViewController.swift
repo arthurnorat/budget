@@ -29,60 +29,38 @@ final class SummaryViewController: UIViewController {
 		super.viewDidLoad()
 		configTableView()
 		mainView.tableView.tableHeaderView = createTableHeaderView()
-		title = "Resumo"		
 	}
 	
 	func configTableView() {
 		mainView.tableView.dataSource = dataSource // Usa o dataSource externo
 		mainView.tableView.delegate = self
-		mainView.tableView.register(
-			CustomTableViewCell.nib(),
-			forCellReuseIdentifier: CustomTableViewCell.identifier)
+		mainView.tableView.register(ExpenseTableViewCell.self, forCellReuseIdentifier: ExpenseTableViewCell.identifier)
 	}
 	
-	func createTableHeaderView() -> UIView {
-		let headerView = UIView()
-		headerView.backgroundColor = .systemGray6
+	private func createTableHeaderView() -> UIView {
+		let header = UIView(frame: CGRect(x: 0, y: 0, width: view.frame.width, height: 40))
 		
-		let nameLabel = UILabel()
-		nameLabel.text = "Nome"
-		nameLabel.font = .boldSystemFont(ofSize: 16)
+		let label = UILabel()
+		label.text = "Total: R$ 0,00"
+		label.font = .boldSystemFont(ofSize: 16)
+		label.textAlignment = .center
+		label.translatesAutoresizingMaskIntoConstraints = false
 		
-		let amountLabel = UILabel()
-		amountLabel.text = "Valor"
-		amountLabel.font = .boldSystemFont(ofSize: 16)
-		amountLabel.textAlignment = .center
-		
-		let typeLabel = UILabel()
-		typeLabel.text = "Tipo"
-		typeLabel.font = .boldSystemFont(ofSize: 16)
-		typeLabel.textAlignment = .right
-		
-		let stack = UIStackView(arrangedSubviews: [nameLabel, amountLabel, typeLabel])
-		stack.axis = .horizontal
-		stack.distribution = .fillEqually
-		stack.spacing = 8
-		stack.translatesAutoresizingMaskIntoConstraints = false
-		
-		headerView.addSubview(stack)
+		header.addSubview(label)
 		NSLayoutConstraint.activate([
-			stack.leadingAnchor.constraint(equalTo: headerView.leadingAnchor, constant: 16),
-			stack.trailingAnchor.constraint(equalTo: headerView.trailingAnchor, constant: -16),
-			stack.topAnchor.constraint(equalTo: headerView.topAnchor, constant: 8),
-			stack.bottomAnchor.constraint(equalTo: headerView.bottomAnchor, constant: -8)
+			label.centerXAnchor.constraint(equalTo: header.centerXAnchor),
+			label.centerYAnchor.constraint(equalTo: header.centerYAnchor)
 		])
 		
-		// Define a altura do header
-		let screenWidth = UIScreen.main.bounds.width
-		headerView.frame = CGRect(x: 0, y: 0, width: screenWidth, height: 40)
-		
-		return headerView
-	}	
+		return header
+	}
 	
 	func addNewExpense(_ expense: Expense) {
 		dataSource.addExpense(expense) // Supondo que ExpensesDataSource tenha este método
 		mainView.tableView.reloadData()
 	}
+	
+	
 }
 
 // MARK: - UITableViewDelegate
@@ -95,9 +73,31 @@ extension SummaryViewController: UITableViewDelegate {
 }
 
 extension SummaryViewController: AddExpenseDelegate {
+	func didCancelAddExpense() {
+	}
+	
 	func didAddNewExpense(_ expense: Expense) {
-		print("New expense added: \(expense.name), amount: \(expense.amount)")
 		dataSource.addExpense(expense)
-		mainView.tableView.reloadData()
+		
+		// Atualiza tudo de uma vez
+		let totalSpent = Double(dataSource.getTotalSpent())
+		let totalBudget: Double = 3000 // Exemplo (poderia vir de um SettingsManager)
+		
+		mainView.updateBudgetValues(
+			remaining: totalBudget - totalSpent,
+			total: totalBudget
+		)
+		
+		mainView.updateProgressBar(usedPercentage: totalSpent / totalBudget)
+		
+		if let header = mainView.tableView.tableHeaderView,
+		   let label = header.subviews.first as? UILabel {
+			let formatter = NumberFormatter()
+			formatter.numberStyle = .currency
+			label.text = "Total: \(formatter.string(from: NSNumber(value: totalSpent)) ?? "")"
+		}
+		
+		let newRowIndex = dataSource.numberOfExpenses() - 1 // Método que você precisa criar
+		mainView.tableView.insertRows(at: [IndexPath(row: newRowIndex, section: 0)], with: .automatic)
 	}
 }

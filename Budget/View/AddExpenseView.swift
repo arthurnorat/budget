@@ -21,12 +21,25 @@ class AddExpenseView: UIView {
 	
 	// MARK: - UI Elements
 	
+	lazy var mainStackView: UIStackView = {
+		let stack = UIStackView()
+		stack.axis = .vertical
+		stack.spacing = 20
+		stack.translatesAutoresizingMaskIntoConstraints = false
+		return stack
+	}()
+	
 	lazy var budgetTrackerLabel: UILabel = {
-		let label = UILabel()
-		label.text = "Budget Tracker"
-		label.font = .boldSystemFont(ofSize: 30)
-		label.translatesAutoresizingMaskIntoConstraints = false
-		return label
+		makeLabel(text: "Budget tracker",
+				  font: .boldSystemFont(ofSize: 30),
+				  alignment: .center)
+	}()
+	
+	lazy var formContainerView: UIView = {
+		let view = UIView()
+		view.backgroundColor = .secondarySystemBackground
+		view.layer.cornerRadius = 12
+		return view
 	}()
 	
 	lazy var addNewExpenseLabel: UILabel = {
@@ -38,40 +51,39 @@ class AddExpenseView: UIView {
 	}()
 	
 	lazy var nameTextField: UITextField = {
-		let textField = UITextField()
-		textField.placeholder = "Nome do gasto"
-		textField.borderStyle = .roundedRect
-		textField.translatesAutoresizingMaskIntoConstraints = false
-		return textField
+		makeTextField(placeholder: "Gasto",
+					  keyboardType: .default)
 	}()
-
+	
 	lazy var amountTextField: UITextField = {
-		let textField = UITextField()
-		textField.placeholder = "Valor"
-		textField.keyboardType = .decimalPad
-		textField.borderStyle = .roundedRect
-		textField.translatesAutoresizingMaskIntoConstraints = false
-		return textField
+		makeTextField(placeholder: "Valor (R$)",
+					  keyboardType: .decimalPad)
 	}()
 	
 	lazy var typeSegmentedControl: UISegmentedControl = {
 		let segmented = UISegmentedControl(items: ["Fixo", "Variável"])
-		segmented.selectedSegmentIndex = 0
-		segmented.translatesAutoresizingMaskIntoConstraints = false
+		segmented.selectedSegmentTintColor = .systemTeal
+		segmented.setTitleTextAttributes([.foregroundColor: UIColor.white], for: .selected)
+		segmented.setTitleTextAttributes([.foregroundColor: UIColor.label], for: .normal)
+		segmented.heightAnchor.constraint(equalToConstant: 36).isActive = true
 		return segmented
 	}()
-
+	
 	lazy var addButton: UIButton = {
 		let button = UIButton(type: .system)
 		button.setTitle("Adicionar", for: .normal)
-		button.addTarget(self, action: #selector(tappedAddButton(_:)), for: .touchUpInside)
-		button.translatesAutoresizingMaskIntoConstraints = false
+		button.titleLabel?.font = .boldSystemFont(ofSize: 16)
+		button.backgroundColor = .systemTeal
+		button.tintColor = .white
+		button.layer.cornerRadius = 8
+		button.heightAnchor.constraint(equalToConstant: 50).isActive = true
+		button.addTarget(self, action: #selector(tappedAddButton), for: .touchUpInside)
 		return button
 	}()
 	
 	// MARK: - Actions
 	
-//	ver o que é isso: var onCloseButtonTapped: (() -> Void)?
+	//	var onCloseButtonTapped: (() -> Void)?
 	
 	@objc func tappedAddButton(_ sender: UIButton) {
 		delegate?.tappedAddButton()
@@ -90,55 +102,77 @@ class AddExpenseView: UIView {
 	}
 	
 	// MARK: - Setup
+	
 	private func setupUI() {
 		backgroundColor = .systemBackground
 		
-		addSubview(budgetTrackerLabel)
-		addSubview(addNewExpenseLabel)
-		addSubview(nameTextField)
-		addSubview(amountTextField)
-		addSubview(typeSegmentedControl)
-		addSubview(addButton)
+		// Form Stack
+		let formStack = UIStackView(arrangedSubviews: [
+			createFormLabel("Adicionar Nova Despesa"),
+			nameTextField,
+			amountTextField,
+			typeSegmentedControl,
+			addButton
+		])
+		formStack.axis = .vertical
+		formStack.spacing = 16
+		
+		// Form Container
+		formContainerView.addSubview(formStack)
+		formStack.translatesAutoresizingMaskIntoConstraints = false
+		NSLayoutConstraint.activate([
+			formStack.topAnchor.constraint(equalTo: formContainerView.topAnchor, constant: 20),
+			formStack.leadingAnchor.constraint(equalTo: formContainerView.leadingAnchor, constant: 16),
+			formStack.trailingAnchor.constraint(equalTo: formContainerView.trailingAnchor, constant: -16),
+			formStack.bottomAnchor.constraint(equalTo: formContainerView.bottomAnchor, constant: -20)
+		])
+		
+		// Main Stack
+		mainStackView.addArrangedSubview(budgetTrackerLabel)
+		mainStackView.addArrangedSubview(formContainerView)
+		addSubview(mainStackView)
+	}
+	
+	private func createFormLabel(_ text: String) -> UILabel {
+		let label = UILabel()
+		label.text = text
+		label.font = .boldSystemFont(ofSize: 20)
+		label.textAlignment = .center
+		return label
 	}
 	
 	private func configConstraints() {
 		NSLayoutConstraint.activate([
+			mainStackView.topAnchor.constraint(equalTo: safeAreaLayoutGuide.topAnchor, constant: 20),
+			mainStackView.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 16),
+			mainStackView.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -16),
 			
-			// budgetTrackerLabel
-			budgetTrackerLabel.topAnchor.constraint(equalTo: safeAreaLayoutGuide.topAnchor, constant: 32),
-			budgetTrackerLabel.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 16),
-			budgetTrackerLabel.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -16),
-			budgetTrackerLabel.heightAnchor.constraint(equalToConstant: 40),
-			
-			// addNewExpenseLabel
-			addNewExpenseLabel.topAnchor.constraint(equalTo: budgetTrackerLabel.bottomAnchor, constant: 16),
-			addNewExpenseLabel.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 16),
-			addNewExpenseLabel.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -16),
-			addNewExpenseLabel.heightAnchor.constraint(equalToConstant: 20),
-			
-			// nameTextField
-			nameTextField.topAnchor.constraint(equalTo: addNewExpenseLabel.bottomAnchor, constant: 8),
-			nameTextField.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 16),
-			nameTextField.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -16),
-			nameTextField.heightAnchor.constraint(equalToConstant: 40),
-			
-			// amountTextField
-			amountTextField.topAnchor.constraint(equalTo: nameTextField.bottomAnchor, constant: 12),
-			amountTextField.leadingAnchor.constraint(equalTo: nameTextField.leadingAnchor),
-			amountTextField.trailingAnchor.constraint(equalTo: nameTextField.trailingAnchor),
-			amountTextField.heightAnchor.constraint(equalToConstant: 40),
-			
-			// typeSegmentedControl
-			typeSegmentedControl.topAnchor.constraint(equalTo: amountTextField.bottomAnchor, constant: 12),
-			typeSegmentedControl.leadingAnchor.constraint(equalTo: nameTextField.leadingAnchor),
-			typeSegmentedControl.trailingAnchor.constraint(equalTo: nameTextField.trailingAnchor),
-			typeSegmentedControl.heightAnchor.constraint(equalToConstant: 32),
-			
-			// addButton
-			addButton.topAnchor.constraint(equalTo: typeSegmentedControl.bottomAnchor, constant: 16),
-			addButton.leadingAnchor.constraint(equalTo: nameTextField.leadingAnchor),
-			addButton.trailingAnchor.constraint(equalTo: nameTextField.trailingAnchor),
-			addButton.heightAnchor.constraint(equalToConstant: 40)
+			formContainerView.widthAnchor.constraint(equalTo: mainStackView.widthAnchor)
 		])
+	}
+}
+
+// Adicione esta extensão para criar componentes de forma mais limpa
+private extension AddExpenseView {
+	func makeLabel(text: String, font: UIFont, alignment: NSTextAlignment = .left) -> UILabel {
+		let label = UILabel()
+		label.text = text
+		label.font = font
+		label.textAlignment = alignment
+		label.translatesAutoresizingMaskIntoConstraints = false
+		return label
+	}
+	
+	func makeTextField(placeholder: String, keyboardType: UIKeyboardType = .default) -> UITextField {
+		let textField = UITextField()
+		textField.placeholder = placeholder
+		textField.keyboardType = keyboardType
+		textField.borderStyle = .none
+		textField.backgroundColor = .tertiarySystemBackground
+		textField.layer.cornerRadius = 8
+		textField.heightAnchor.constraint(equalToConstant: 44).isActive = true
+		textField.leftView = UIView(frame: CGRect(x: 0, y: 0, width: 12, height: 44))
+		textField.leftViewMode = .always
+		return textField
 	}
 }
