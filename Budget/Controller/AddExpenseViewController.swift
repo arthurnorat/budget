@@ -131,7 +131,7 @@ extension AddExpenseViewController: AddExpenseViewProtocol {
 }
 
 private extension AddExpenseViewController {
-	/// Valida os campos e retorna um `Expense` se válido, ou `nil` se inválido
+	// Valida os campos e retorna um `Expense` se válido, ou `nil` se inválido
 	func validateForm() -> Expense? {
 		// Validação do Nome
 		guard let name = addExpenseView.nameTextField.text?.trimmingCharacters(in: .whitespaces),
