@@ -6,19 +6,36 @@
 //
 
 import UIKit
+import CoreData
 
 final class ExpensesDataSource: NSObject, UITableViewDataSource {
     
     // MARK: - Properties
+	
     private var expenses: [Expense] = []
+	private let coreDataManager = CoreDataManager.shared
     
     // MARK: - Public Methods
-    func updateExpenses(_ expenses: [Expense]) {
-        self.expenses = expenses
+	
+	func getContext() -> NSManagedObjectContext {
+		return coreDataManager.context
+	}
+	
+    func updateExpenses(_ newExpenses: [Expense]) {
+		self.expenses = newExpenses
     }
     
     func addExpense(_ expense: Expense) {
-        expenses.append(expense)
+        let entity = ExpenseEntity(context: coreDataManager.context)
+		entity.id = UUID()
+		entity.name = expense.name
+		entity.amount = expense.amount
+		entity.type = expense.type.rawValue
+		entity.date = Date()
+		
+		coreDataManager.saveContext()
+		
+		expenses.append(expense)
     }
 	
 	func getAllExpenses() -> [Expense] {
@@ -30,15 +47,20 @@ final class ExpensesDataSource: NSObject, UITableViewDataSource {
 		return expenses[index]
 	}
 	
-	func getTotalSpent() -> Float {
+	func getTotalSpent() -> Double {
 		return expenses.reduce(0) { $0 + $1.amount }
 	}
 	
 	func numberOfExpenses() -> Int {
 		return expenses.count
-	}	
+	}
+	
+	
+	
+	
     
     // MARK: - UITableViewDataSource
+	
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return expenses.count
     }

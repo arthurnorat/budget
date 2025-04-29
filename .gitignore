@@ -1,0 +1,15 @@
+# Arquivos do Xcode
+.DS_Store
+*.xcuserstate
+*.xcuserdata
+xcuserdata/
+DerivedData/
+*.xccheckout
+*.xcscmblueprint
+*.moved-aside
+
+# Arquivos do CoreData (gerados automaticamente)
+*.xcdatamodeld/*.xccurrentversion
+
+# Configurações pessoais
+UserInterfaceState.xcuserstate

@@ -6,11 +6,13 @@
 //
 
 import UIKit
+import CoreData
 
 final class SummaryViewController: UIViewController {
 	
 	// MARK: - Properties
-
+	
+	
 	private let mainView = SummaryView()
 	private let dataSource = ExpensesDataSource() // Substitui o array direto
 	private var expenses: [Expense] = [] {
@@ -18,6 +20,7 @@ final class SummaryViewController: UIViewController {
 			dataSource.updateExpenses(expenses)
 		}
 	}
+	private let coreDataManager = CoreDataManager.shared
 
 	// MARK: - Lifecycle
 
@@ -29,6 +32,7 @@ final class SummaryViewController: UIViewController {
 		super.viewDidLoad()
 		configTableView()
 		mainView.tableView.tableHeaderView = createTableHeaderView()
+		loadExpenses()		
 	}
 	
 	func configTableView() {
@@ -60,10 +64,40 @@ final class SummaryViewController: UIViewController {
 		mainView.tableView.reloadData()
 	}
 	
+	private func loadExpenses() {
+		// 1. Cria um 'pedido' (fetch request) para buscar todas as ExpenseEntity no CoreData
+		let request: NSFetchRequest<ExpenseEntity> = ExpenseEntity.fetchRequest()
+		
+		do {
+			// 2. Tenta buscar os dados no CoreData (usando o contexto)
+			let savedExpenses = try coreDataManager.context.fetch(request)
+			
+			// 3. Converte as ExpenseEntity (CoreData) para o modelo local Expense (se necessário)
+			let expenses = savedExpenses.map { entity in
+				Expense(
+					name: entity.name ?? "",
+					amount: entity.amount,
+					type: ExpenseType(rawValue: entity.type ?? "") ?? .variable  // Conversão segura
+				)
+			}
+			
+			// 4. Atualiza o dataSource com os dados buscados
+			dataSource.updateExpenses(expenses)
+			
+			// 5. Recarrega a tabela para exibir os dados
+			mainView.tableView.reloadData()
+			
+		} catch {
+			// 6. Se houver erro, mostra no console (em produção, exibiríamos um alerta)
+			print("Erro ao carregar despesas:", error.localizedDescription)
+		}
+	}
+	
 	
 }
 
 // MARK: - UITableViewDelegate
+
 extension SummaryViewController: UITableViewDelegate {
 	// Mantemos o delegate no controller pois lida com interação do usuário
 		func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
