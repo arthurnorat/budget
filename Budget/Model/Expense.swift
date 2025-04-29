@@ -7,13 +7,14 @@
 
 import Foundation
 
+
+enum ExpenseType: String {
+	case fixed = "Fixo"
+	case variable = "Variável"
+}
+
 struct Expense {
 	var name: String
-	var amount: Float
+	var amount: Double
 	var type: ExpenseType
-	
-	enum ExpenseType: String {
-		case fixed = "Fixo"
-		case variable = "Variável"
-	}
 }

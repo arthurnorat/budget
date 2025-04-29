@@ -7,6 +7,7 @@
 
 import UIKit
 import Foundation
+import CoreData
 
 protocol AddExpenseDelegate: AnyObject {
 	func didAddNewExpense(_ expense: Expense)
@@ -33,13 +34,13 @@ final class AddExpenseViewController: UIViewController {
 		setupKeyboard()
 		setupButtonAnimation()
 	}
-    
-    
-    // MARK: - Actions
 	
-    @objc private func dismissSelf() {
-        dismiss(animated: true)
-    }
+	
+	// MARK: - Actions
+	
+	@objc private func dismissSelf() {
+		dismiss(animated: true)
+	}
 	
 	private func setupKeyboard() {
 		// Toque fora do teclado para fechá-lo
@@ -109,11 +110,11 @@ extension AddExpenseViewController: AddExpenseViewProtocol {
 	func tappedAddButton() {
 		guard let name = addExpenseView.nameTextField.text, !name.isEmpty,
 			  let amountText = addExpenseView.amountTextField.text,
-			  let amount = Float(amountText) else {
+			  let amount = Double(amountText) else {
 			return
 		}
 		
-		let selectedType: Expense.ExpenseType = addExpenseView.typeSegmentedControl.selectedSegmentIndex == 0 ? .fixed : .variable
+		let selectedType: ExpenseType = addExpenseView.typeSegmentedControl.selectedSegmentIndex == 0 ? .fixed : .variable
 		
 		let expense = Expense(name: name, amount: amount, type: selectedType)
 		delegate?.didAddNewExpense(expense)
@@ -143,14 +144,14 @@ private extension AddExpenseViewController {
 		
 		// Validação do Valor
 		guard let amountText = addExpenseView.amountTextField.text,
-			  let amount = Float(amountText),
+			  let amount = Double(amountText),
 			  amount > 0 else {
 			showAlert(title: "Valor inválido", message: "Digite um valor positivo")
 			return nil
 		}
 		
 		// Define o tipo (Fixo/Variável)
-		let type: Expense.ExpenseType = addExpenseView.typeSegmentedControl.selectedSegmentIndex == 0 ? .fixed : .variable
+		let type: ExpenseType = addExpenseView.typeSegmentedControl.selectedSegmentIndex == 0 ? .fixed : .variable
 		
 		return Expense(name: name, amount: amount, type: type)
 	}
