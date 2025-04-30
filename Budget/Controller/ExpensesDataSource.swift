@@ -27,11 +27,11 @@ final class ExpensesDataSource: NSObject, UITableViewDataSource {
     
     func addExpense(_ expense: Expense) {
         let entity = ExpenseEntity(context: coreDataManager.context)
-		entity.id = UUID()
+		entity.id = expense.id
 		entity.name = expense.name
 		entity.amount = expense.amount
 		entity.type = expense.type.rawValue
-		entity.date = Date()
+		entity.date = expense.date
 		
 		coreDataManager.saveContext()
 		
@@ -55,7 +55,23 @@ final class ExpensesDataSource: NSObject, UITableViewDataSource {
 		return expenses.count
 	}
 	
-	
+	func deleteExpense(at index: Int) {
+		// 1. Verifica se o índice é válido
+		guard index < expenses.count else { return }
+		
+		// 2. Obtém a entidade do CoreData correspondente
+		let expenseToDelete = expenses[index]
+		if let entity = try? coreDataManager.context.fetch(ExpenseEntity.fetchRequest())
+			.first(where: { $0.id == expenseToDelete.id }) {
+			
+			// 3. Remove do CoreData
+			coreDataManager.context.delete(entity)
+			coreDataManager.saveContext()
+		}
+		
+		// 4. Remove do array local
+		expenses.remove(at: index)
+	}
 	
 	
     

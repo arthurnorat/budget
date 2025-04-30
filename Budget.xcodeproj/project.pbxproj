@@ -22,6 +22,10 @@
 		E03BE29A2DAEEE8E00D1A407 /* AppTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E03BE2992DAEEE8E00D1A407 /* AppTabBarController.swift */; };
 		E03BE29C2DAEF4C100D1A407 /* AddExpenseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E03BE29B2DAEF4C100D1A407 /* AddExpenseViewController.swift */; };
 		E0A152AF2DB014DA00D6285B /* AddExpenseView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0A152AE2DB014DA00D6285B /* AddExpenseView.swift */; };
+		E0DC498E2DC0152500F80FFB /* BudgetModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = E0DC498C2DC0152500F80FFB /* BudgetModel.xcdatamodeld */; };
+		E0DC49912DC015D500F80FFB /* ExpenseEntity+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0DC498F2DC015D500F80FFB /* ExpenseEntity+CoreDataClass.swift */; };
+		E0DC49922DC015D500F80FFB /* ExpenseEntity+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0DC49902DC015D500F80FFB /* ExpenseEntity+CoreDataProperties.swift */; };
+		E0DC49942DC0169400F80FFB /* CoreDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0DC49932DC0169400F80FFB /* CoreDataManager.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -48,6 +52,10 @@
 		E03BE2992DAEEE8E00D1A407 /* AppTabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppTabBarController.swift; sourceTree = "<group>"; };
 		E03BE29B2DAEF4C100D1A407 /* AddExpenseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddExpenseViewController.swift; sourceTree = "<group>"; };
 		E0A152AE2DB014DA00D6285B /* AddExpenseView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddExpenseView.swift; sourceTree = "<group>"; };
+		E0DC498D2DC0152500F80FFB /* BudgetModel.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = BudgetModel.xcdatamodel; sourceTree = "<group>"; };
+		E0DC498F2DC015D500F80FFB /* ExpenseEntity+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ExpenseEntity+CoreDataClass.swift"; sourceTree = SOURCE_ROOT; };
+		E0DC49902DC015D500F80FFB /* ExpenseEntity+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ExpenseEntity+CoreDataProperties.swift"; sourceTree = SOURCE_ROOT; };
+		E0DC49932DC0169400F80FFB /* CoreDataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataManager.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -92,6 +100,7 @@
 		C92B9E342C583DA700AD4557 /* Budget */ = {
 			isa = PBXGroup;
 			children = (
+				E0F8371C2DC00682006935C3 /* Utilities */,
 				C9DC79AE2DA451D5003F5AAA /* Controller */,
 				C9F465922DA04D27005C87E1 /* View */,
 				C903399D2DA04847005D65EE /* Application */,
@@ -106,7 +115,10 @@
 		C980450D2D9C80ED0096CF10 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				E0DC498F2DC015D500F80FFB /* ExpenseEntity+CoreDataClass.swift */,
+				E0DC49902DC015D500F80FFB /* ExpenseEntity+CoreDataProperties.swift */,
 				C92B9E502C593C8700AD4557 /* Expense.swift */,
+				E0DC498C2DC0152500F80FFB /* BudgetModel.xcdatamodeld */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -132,6 +144,14 @@
 				C9F465932DA04D2D005C87E1 /* SummaryView.swift */,
 			);
 			path = View;
+			sourceTree = "<group>";
+		};
+		E0F8371C2DC00682006935C3 /* Utilities */ = {
+			isa = PBXGroup;
+			children = (
+				E0DC49932DC0169400F80FFB /* CoreDataManager.swift */,
+			);
+			path = Utilities;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -210,6 +230,8 @@
 				C9F465942DA04D39005C87E1 /* SummaryView.swift in Sources */,
 				E03BE2982DAEEE4600D1A407 /* SettingsViewController.swift in Sources */,
 				C903399F2DA048DC005D65EE /* AppCoordinator.swift in Sources */,
+				E0DC49942DC0169400F80FFB /* CoreDataManager.swift in Sources */,
+				E0DC498E2DC0152500F80FFB /* BudgetModel.xcdatamodeld in Sources */,
 				C92B9E362C583DA700AD4557 /* AppDelegate.swift in Sources */,
 				C9F465962DA04D91005C87E1 /* CustomTableViewCellProgrammatic.swift in Sources */,
 				E03BE29C2DAEF4C100D1A407 /* AddExpenseViewController.swift in Sources */,
@@ -217,6 +239,8 @@
 				C9DC79AD2DA451D1003F5AAA /* SummaryViewController.swift in Sources */,
 				C92B9E382C583DA700AD4557 /* SceneDelegate.swift in Sources */,
 				E03BE29A2DAEEE8E00D1A407 /* AppTabBarController.swift in Sources */,
+				E0DC49912DC015D500F80FFB /* ExpenseEntity+CoreDataClass.swift in Sources */,
+				E0DC49922DC015D500F80FFB /* ExpenseEntity+CoreDataProperties.swift in Sources */,
 				E0A152AF2DB014DA00D6285B /* AddExpenseView.swift in Sources */,
 				C92B9E512C593C8700AD4557 /* Expense.swift in Sources */,
 			);
@@ -378,6 +402,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 9GW36979L7;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = Budget/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
@@ -410,6 +435,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 9GW36979L7;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = Budget/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
@@ -457,6 +483,19 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		E0DC498C2DC0152500F80FFB /* BudgetModel.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				E0DC498D2DC0152500F80FFB /* BudgetModel.xcdatamodel */,
+			);
+			currentVersion = E0DC498D2DC0152500F80FFB /* BudgetModel.xcdatamodel */;
+			path = BudgetModel.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
 	};
 	rootObject = C92B9E2A2C583DA700AD4557 /* Project object */;
 }

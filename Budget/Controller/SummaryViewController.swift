@@ -75,9 +75,11 @@ final class SummaryViewController: UIViewController {
 			// 3. Converte as ExpenseEntity (CoreData) para o modelo local Expense (se necessário)
 			let expenses = savedExpenses.map { entity in
 				Expense(
+					id: entity.id ?? UUID(),
 					name: entity.name ?? "",
 					amount: entity.amount,
-					type: ExpenseType(rawValue: entity.type ?? "") ?? .variable  // Conversão segura
+					type: ExpenseType(rawValue: entity.type ?? "") ?? .variable,  // Conversão segura
+					date: entity.date ?? Date()
 				)
 			}
 			
@@ -99,11 +101,29 @@ final class SummaryViewController: UIViewController {
 // MARK: - UITableViewDelegate
 
 extension SummaryViewController: UITableViewDelegate {
-	// Mantemos o delegate no controller pois lida com interação do usuário
-		func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-			tableView.deselectRow(at: indexPath, animated: true)
-			// Lógica de seleção aqui
-		}	
+	func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+		tableView.deselectRow(at: indexPath, animated: true)
+	}
+	
+	func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
+		
+		//1. Adiciona a ação de deletar
+		let deleteAction = UIContextualAction(style: .destructive, title: "Deletar") { [weak self] _, _, completionHandler in
+			//2. Deleta a despesa
+			self?.dataSource.deleteExpense(at: indexPath.row)
+			
+			//3. Atualiza a tabela
+			tableView.deleteRows(at: [indexPath], with: .automatic)
+			
+			//4. Informa que a ação foi concluída
+			completionHandler(true)
+		}
+		
+		//5. Retorna a configuração com a ação
+		return UISwipeActionsConfiguration(actions: [deleteAction])
+	}
+	
+
 }
 
 extension SummaryViewController: AddExpenseDelegate {

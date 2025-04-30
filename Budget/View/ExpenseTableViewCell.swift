@@ -12,6 +12,7 @@ class ExpenseTableViewCell: UITableViewCell {
 	static let identifier = "CustomTableViewCell"
 	
 	// MARK: - UI Components
+	
 	private let nameLabel: UILabel = {
 		let label = UILabel()
 		label.font = .systemFont(ofSize: 16, weight: .medium)
@@ -75,7 +76,7 @@ class ExpenseTableViewCell: UITableViewCell {
 	override func setHighlighted(_ highlighted: Bool, animated: Bool) {
 		super.setHighlighted(highlighted, animated: animated)
 		UIView.animate(withDuration: 0.2) {
-			self.contentView.backgroundColor = highlighted ? UIColor.systemTeal.withAlphaComponent(0.1) : .secondarySystemBackground
+			self.contentView.backgroundColor = highlighted ? UIColor.systemTeal.withAlphaComponent(0.1) : .systemBackground
 		}
 	}
 	
