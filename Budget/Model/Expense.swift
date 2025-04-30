@@ -14,7 +14,23 @@ enum ExpenseType: String {
 }
 
 struct Expense {
+	var id: UUID
 	var name: String
 	var amount: Double
 	var type: ExpenseType
+	var date: Date
+	
+	init(
+		id: UUID = UUID(),
+		name: String,
+		amount: Double,
+		type: ExpenseType,
+		date: Date = Date()
+	) {
+		self.id = id
+		self.name = name
+		self.amount = amount
+		self.type = type
+		self.date = date
+	}
 }
