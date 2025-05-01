@@ -11,7 +11,6 @@
 		C92B9E362C583DA700AD4557 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C92B9E352C583DA700AD4557 /* AppDelegate.swift */; };
 		C92B9E382C583DA700AD4557 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C92B9E372C583DA700AD4557 /* SceneDelegate.swift */; };
 		C92B9E3F2C583DA900AD4557 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C92B9E3E2C583DA900AD4557 /* Assets.xcassets */; };
-		C92B9E422C583DA900AD4557 /* Base in Resources */ = {isa = PBXBuildFile; fileRef = C92B9E412C583DA900AD4557 /* Base */; };
 		C92B9E4E2C5918DE00AD4557 /* ExpenseTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C92B9E4B2C5918DE00AD4557 /* ExpenseTableViewCell.swift */; };
 		C92B9E512C593C8700AD4557 /* Expense.swift in Sources */ = {isa = PBXBuildFile; fileRef = C92B9E502C593C8700AD4557 /* Expense.swift */; };
 		C9A2D25B2DA7094300E86524 /* ExpensesDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9A2D25A2DA7094300E86524 /* ExpensesDataSource.swift */; };
@@ -34,18 +33,12 @@
 		C92B9E352C583DA700AD4557 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		C92B9E372C583DA700AD4557 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
 		C92B9E3E2C583DA900AD4557 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
-		C92B9E412C583DA900AD4557 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		C92B9E432C583DA900AD4557 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		C92B9E4B2C5918DE00AD4557 /* ExpenseTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExpenseTableViewCell.swift; sourceTree = "<group>"; };
 		C92B9E4F2C59361B00AD4557 /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		C92B9E502C593C8700AD4557 /* Expense.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Expense.swift; sourceTree = "<group>"; };
 		C9A2D25A2DA7094300E86524 /* ExpensesDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExpensesDataSource.swift; sourceTree = "<group>"; };
 		C9DC79AC2DA451BC003F5AAA /* SummaryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SummaryViewController.swift; sourceTree = "<group>"; };
-		C9E8A3AF2D9F1DCE00C8524C /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
-		C9E8A3B12D9F1E5F00C8524C /* pt-BR */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "pt-BR"; path = "pt-BR.lproj/LaunchScreen.strings"; sourceTree = "<group>"; };
-		C9E8A3B22D9F1E6000C8524C /* pt-BR */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "pt-BR"; path = "pt-BR.lproj/Localizable.strings"; sourceTree = "<group>"; };
-		C9E8A3B42D9F1E9000C8524C /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/LaunchScreen.strings; sourceTree = "<group>"; };
-		C9E8A3B52D9F1E9000C8524C /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/Localizable.strings; sourceTree = "<group>"; };
 		C9F465932DA04D2D005C87E1 /* SummaryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SummaryView.swift; sourceTree = "<group>"; };
 		C9F465952DA04D91005C87E1 /* CustomTableViewCellProgrammatic.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTableViewCellProgrammatic.swift; sourceTree = "<group>"; };
 		E03BE2972DAEEE4600D1A407 /* SettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
@@ -82,7 +75,6 @@
 		C92B9E292C583DA700AD4557 = {
 			isa = PBXGroup;
 			children = (
-				C9E8A3AE2D9F1DCE00C8524C /* Localizable.strings */,
 				C92B9E4F2C59361B00AD4557 /* README.md */,
 				C92B9E342C583DA700AD4557 /* Budget */,
 				C92B9E332C583DA700AD4557 /* Products */,
@@ -106,7 +98,6 @@
 				C903399D2DA04847005D65EE /* Application */,
 				C980450D2D9C80ED0096CF10 /* Model */,
 				C92B9E3E2C583DA900AD4557 /* Assets.xcassets */,
-				C92B9E402C583DA900AD4557 /* LaunchScreen.storyboard */,
 				C92B9E432C583DA900AD4557 /* Info.plist */,
 			);
 			path = Budget;
@@ -195,9 +186,6 @@
 			hasScannedForEncodings = 0;
 			knownRegions = (
 				en,
-				Base,
-				"pt-BR",
-				de,
 			);
 			mainGroup = C92B9E292C583DA700AD4557;
 			productRefGroup = C92B9E332C583DA700AD4557 /* Products */;
@@ -215,7 +203,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				C92B9E3F2C583DA900AD4557 /* Assets.xcassets in Resources */,
-				C92B9E422C583DA900AD4557 /* Base in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -247,29 +234,6 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
-
-/* Begin PBXVariantGroup section */
-		C92B9E402C583DA900AD4557 /* LaunchScreen.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				C92B9E412C583DA900AD4557 /* Base */,
-				C9E8A3B12D9F1E5F00C8524C /* pt-BR */,
-				C9E8A3B42D9F1E9000C8524C /* de */,
-			);
-			name = LaunchScreen.storyboard;
-			sourceTree = "<group>";
-		};
-		C9E8A3AE2D9F1DCE00C8524C /* Localizable.strings */ = {
-			isa = PBXVariantGroup;
-			children = (
-				C9E8A3AF2D9F1DCE00C8524C /* en */,
-				C9E8A3B22D9F1E6000C8524C /* pt-BR */,
-				C9E8A3B52D9F1E9000C8524C /* de */,
-			);
-			name = Localizable.strings;
-			sourceTree = "<group>";
-		};
-/* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
 		C92B9E442C583DA900AD4557 /* Debug */ = {
