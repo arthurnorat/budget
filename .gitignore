@@ -1,15 +1,18 @@
-# Arquivos do Xcode
+# Xcode
 .DS_Store
+**/xcuserdata/*
 *.xcuserstate
 *.xcuserdata
-xcuserdata/
+UserInterfaceState.xcuserstate
 DerivedData/
 *.xccheckout
 *.xcscmblueprint
 *.moved-aside
 
-# Arquivos do CoreData (gerados automaticamente)
+# CoreData
 *.xcdatamodeld/*.xccurrentversion
 
-# Configurações pessoais
-UserInterfaceState.xcuserstate
+# Swift/SwiftPM
+.build/
+*.swp
+*~
