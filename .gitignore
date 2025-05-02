@@ -16,3 +16,7 @@ DerivedData/
 .build/
 *.swp
 *~
+
+# macOS
+.DS_Store
+**/.DS_Store
