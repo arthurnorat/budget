@@ -127,7 +127,7 @@ extension AddExpenseViewController: AddExpenseViewProtocol {
 		// Navega para a SummaryView - a decidir
 		if let tabBarController = self.tabBarController {
 			tabBarController.selectedIndex = 1
-		}
+		}		
 	}
 }
 
