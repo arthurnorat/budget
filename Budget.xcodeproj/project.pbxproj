@@ -21,9 +21,6 @@
 		E03BE29A2DAEEE8E00D1A407 /* AppTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E03BE2992DAEEE8E00D1A407 /* AppTabBarController.swift */; };
 		E03BE29C2DAEF4C100D1A407 /* AddExpenseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E03BE29B2DAEF4C100D1A407 /* AddExpenseViewController.swift */; };
 		E0A152AF2DB014DA00D6285B /* AddExpenseView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0A152AE2DB014DA00D6285B /* AddExpenseView.swift */; };
-		E0A9ED762DCAA1300019D4FB /* AddExpenseCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0A9ED752DCAA1300019D4FB /* AddExpenseCoordinator.swift */; };
-		E0A9ED782DCAA2700019D4FB /* SummaryCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0A9ED772DCAA2670019D4FB /* SummaryCoordinator.swift */; };
-		E0A9ED7A2DCAA39E0019D4FB /* SettingsCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0A9ED792DCAA3950019D4FB /* SettingsCoordinator.swift */; };
 		E0DC498E2DC0152500F80FFB /* BudgetModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = E0DC498C2DC0152500F80FFB /* BudgetModel.xcdatamodeld */; };
 		E0DC49942DC0169400F80FFB /* CoreDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0DC49932DC0169400F80FFB /* CoreDataManager.swift */; };
 		E0F56CC32DC696DA0064CFCE /* ExpenseEntity+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0F56CC22DC696DA0064CFCE /* ExpenseEntity+CoreDataProperties.swift */; };
@@ -48,9 +45,6 @@
 		E03BE2992DAEEE8E00D1A407 /* AppTabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppTabBarController.swift; sourceTree = "<group>"; };
 		E03BE29B2DAEF4C100D1A407 /* AddExpenseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddExpenseViewController.swift; sourceTree = "<group>"; };
 		E0A152AE2DB014DA00D6285B /* AddExpenseView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddExpenseView.swift; sourceTree = "<group>"; };
-		E0A9ED752DCAA1300019D4FB /* AddExpenseCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddExpenseCoordinator.swift; sourceTree = "<group>"; };
-		E0A9ED772DCAA2670019D4FB /* SummaryCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SummaryCoordinator.swift; sourceTree = "<group>"; };
-		E0A9ED792DCAA3950019D4FB /* SettingsCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsCoordinator.swift; sourceTree = "<group>"; };
 		E0DC498D2DC0152500F80FFB /* BudgetModel.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = BudgetModel.xcdatamodel; sourceTree = "<group>"; };
 		E0DC49932DC0169400F80FFB /* CoreDataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataManager.swift; sourceTree = "<group>"; };
 		E0F56CC12DC696DA0064CFCE /* ExpenseEntity+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ExpenseEntity+CoreDataClass.swift"; sourceTree = "<group>"; };
@@ -98,7 +92,6 @@
 		C92B9E342C583DA700AD4557 /* Budget */ = {
 			isa = PBXGroup;
 			children = (
-				E0A9ED742DCAA1230019D4FB /* Coordinators */,
 				E0F8371C2DC00682006935C3 /* Utilities */,
 				C9DC79AE2DA451D5003F5AAA /* Controller */,
 				C9F465922DA04D27005C87E1 /* View */,
@@ -142,16 +135,6 @@
 				C9F465932DA04D2D005C87E1 /* SummaryView.swift */,
 			);
 			path = View;
-			sourceTree = "<group>";
-		};
-		E0A9ED742DCAA1230019D4FB /* Coordinators */ = {
-			isa = PBXGroup;
-			children = (
-				E0A9ED792DCAA3950019D4FB /* SettingsCoordinator.swift */,
-				E0A9ED772DCAA2670019D4FB /* SummaryCoordinator.swift */,
-				E0A9ED752DCAA1300019D4FB /* AddExpenseCoordinator.swift */,
-			);
-			path = Coordinators;
 			sourceTree = "<group>";
 		};
 		E0F8371C2DC00682006935C3 /* Utilities */ = {
@@ -235,7 +218,6 @@
 				E03BE2982DAEEE4600D1A407 /* SettingsViewController.swift in Sources */,
 				C903399F2DA048DC005D65EE /* AppCoordinator.swift in Sources */,
 				E0DC49942DC0169400F80FFB /* CoreDataManager.swift in Sources */,
-				E0A9ED7A2DCAA39E0019D4FB /* SettingsCoordinator.swift in Sources */,
 				E0DC498E2DC0152500F80FFB /* BudgetModel.xcdatamodeld in Sources */,
 				C92B9E362C583DA700AD4557 /* AppDelegate.swift in Sources */,
 				C9F465962DA04D91005C87E1 /* CustomTableViewCellProgrammatic.swift in Sources */,
@@ -246,8 +228,6 @@
 				E03BE29A2DAEEE8E00D1A407 /* AppTabBarController.swift in Sources */,
 				E0F56CC32DC696DA0064CFCE /* ExpenseEntity+CoreDataProperties.swift in Sources */,
 				E0F56CC42DC696DA0064CFCE /* ExpenseEntity+CoreDataClass.swift in Sources */,
-				E0A9ED782DCAA2700019D4FB /* SummaryCoordinator.swift in Sources */,
-				E0A9ED762DCAA1300019D4FB /* AddExpenseCoordinator.swift in Sources */,
 				E0A152AF2DB014DA00D6285B /* AddExpenseView.swift in Sources */,
 				C92B9E512C593C8700AD4557 /* Expense.swift in Sources */,
 			);
